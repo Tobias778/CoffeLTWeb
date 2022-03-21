@@ -1,0 +1,37 @@
+﻿@model IEnumerable<WebApplication1.Models.cafe>
+@{
+    ViewBag.Title = "IndexCafe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<table border="1px">
+    <tr>
+        <th>Mã Cafe</th>
+        <th>Tên Cafe</th>
+        <th>Mã Loại</th>
+        <th>Hình</th>
+        <th> Giá bán</th>
+        <th> Ngày cập nhật</th>
+        <th> Số lượng tồn</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.macafe</td>
+    <td>@item.tencafe</td>
+    <td>@item.maloai</td>
+    <td style="width:50%"><img src="@item.hinh" /></td>
+    <td>@Html.DisplayFor(modelItem => item.giaban) </td>
+    <td>@Html.DisplayFor(modelItem => item.ngaycapnhat) </td>
+    <td>@Html.DisplayFor(modelItem => item.soluongton) </td>
+    <td>
+        @Html.ActionLink("Edit", "EditCafe", new { id = item.macafe })|
+        @Html.ActionLink("Detail", "DetailCafe", new { id = item.macafe })|
+        @Html.ActionLink("Delete", "DeleteCafe", new { id = item.macafe })|
+    </td>
+</tr>
+    }
+</table>
+@Html.ActionLink("Create", "CreateCafe", "Cafe")
